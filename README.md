@@ -1,15 +1,21 @@
 # StackOverflowOffline
+
 ## Information
 Written in Nodejs, an offline viewer for stackoverflow.com data.
+
 ## Set up
-Download Nodejs from https://nodejs.org/en/<br>
-Download Postgresql from https://www.postgresql.org/<br>
-Download and follow instructions of this project https://github.com/Networks-Learning/stackexchange-dump-to-postgres (Just Comments.xml and Posts.xml are needed)<br>
-npm install striptags<br>
-npm install escape-html<br>
-npm install fs<br>
-npm install btoa<br>
-npm install pg<br>
-npm install http<br>
+<ul>
+<li>Download Nodejs from https://nodejs.org/en/</li>
+<li>Download Postgresql from https://www.postgresql.org/</li>
+<li>Download and follow instructions of this project https://github.com/Networks-Learning/stackexchange-dump-to-postgres (Just Comments.xml and Posts.xml are needed. The database will be around 70GB)</li>
+<li>npm install striptags</li>
+<li>npm install escape-html</li>
+<li>npm install fs</li>
+<li>npm install btoa</li>
+<li>npm install pg</li>
+<li>npm install http</li>
+<li>run the server with the command 'node server.js' and browse to 127.0.0.1:1337 in your web browser</li>
+</ul>
+
 ## Screenshots
 ![alt text](https://i.imgur.com/iuKJyMk.png)<br>
