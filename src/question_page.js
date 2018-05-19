@@ -105,7 +105,8 @@ function show_questions(response, page_number, search_terms, questions_per_page)
                         var title_link = 'question' + query_result.rows[i]['id']
                         var score = query_result.rows[i]['score']
                         var num_answers = query_result.rows[i]['answercount']
-                        var num_views = utils.number_to_shorthand(query_result.rows[i]['viewcount'])
+                        var num_views = query_result.rows[i]['viewcount']
+                        var num_views2 = utils.number_to_shorthand(num_views)
                         var date_asked = query_result.rows[i]['creationdate']
                         var asked_by = query_result.rows[i]['owneruserid']
                         var user_image = utils.generate_user_icon(asked_by)
@@ -119,7 +120,8 @@ function show_questions(response, page_number, search_terms, questions_per_page)
 
                         question = question.replace(/XXX_QUESTION_SCORE_XXX/g, score)
                         question = question.replace(/XXX_NUM_ANSWERS_XXX/g, num_answers)
-                        question = question.replace(/XXX_NUM_VIEWS_XXX/g, num_views)
+                        question = question.replace(/XXX_NUM_VIEWS_XXX/g, num_views2)
+                        question = question.replace(/XXX_NUM_VIEWS2_XXX/g, num_views)
                         question = question.replace(/XXX_TITLE_LINK_XXX/g, title_link)
                         question = question.replace(/XXX_QUESTION_TITLE_XXX/g, title)
                         question = question.replace(/XXX_BODY_SAMPLE_XXX/g, post_body_sample)
