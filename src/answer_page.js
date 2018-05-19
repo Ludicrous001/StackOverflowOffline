@@ -27,20 +27,27 @@ function show_answers(response, question_id) {
         database: 'stackoverflow',
         port: 5432,
     })
+
+    // Connect to the database
     client.connect(function(err, callback) {
         if (handle_error(response, err))
             return
 
+        // Load CSS and html template
         fs.readFile('./primary.css', function (err, css) {
             fs.readFile('./answer_page.html', function (err, answer_page_template) {
+
+                // Get the question from the database
                 client.query('SELECT * FROM posts WHERE id=' + question_id, (err, question) => {
                     if (handle_error(response, err))
                         return
+
+                    // Get all answers to the question from the database
                     client.query('SELECT * FROM posts WHERE parentid=' + question_id + ' ORDER BY score DESC', (err, answers) => {
                         if (handle_error(response, err))
                             return
 
-                        // Construct SQL statement to get all the comments for this question
+                        // Construct SQL statement to get all the comments for the question and answers
                         var num_answers = question.rows[0]['answercount']
                         var answer_ids = []
                         for (var i = 0; i < parseInt(num_answers); i++) {
@@ -54,7 +61,7 @@ function show_answers(response, question_id) {
                         sql_comments = sql_comments.substring(0, sql_comments.length - 2);
                         sql_comments += ') ORDER BY creationdate ASC'
 
-
+                        // Get all the comments from the databse
                         client.query(sql_comments, (err, comments) => {
                             if (handle_error(response, err))
                                 return
@@ -80,7 +87,6 @@ function show_answers(response, question_id) {
                             html_begin = html_begin.replace(/XXX_ASKER_ICON_XXX/g, user_image)
                             html_begin = html_begin.replace(/XXX_ASKED_BY_XXX/g, asked_by)
 
-                            // Send HTML before loops
                             response.write(html_begin)
 
                             // Begin looping through comments for the question

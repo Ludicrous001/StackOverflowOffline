@@ -29,16 +29,24 @@ function show_questions(response, page_number, search_terms, questions_per_page)
         database: 'stackoverflow',
         port: 5432,
     })
+
+    // Connect to the database
     client.connect(function(err, callback) {
         if (handle_error(response, err))
             return
 
+        // Load CSS and html template
         fs.readFile('./primary.css', function (err, css) {
             fs.readFile('./question_page.html', function (err, question_template_page) {
+
+                // The default page is the list of all questions sorted by score
                 var sql_query = ''
                 if (search_terms == null) {
                     sql_query = 'SELECT * FROM posts WHERE title IS NOT NULL ORDER BY score DESC LIMIT ' + questions_per_page + ' OFFSET ' + questions_per_page*page_number
                 }
+
+                // If the user has typed in search terms, require all search terms to be in the title
+                // TODO: optimize
                 else {
                     search_terms_split = search_terms.split('+')
                     sql_query = 'SELECT * FROM posts WHERE title IS NOT NULL AND ('
@@ -55,6 +63,7 @@ function show_questions(response, page_number, search_terms, questions_per_page)
                     sql_query += 'LIMIT ' + questions_per_page + ' OFFSET ' + questions_per_page*page_number
                 }
 
+                // Query the databse for the proper list of questions
                 client.query(sql_query, (err, query_result) => {
                     if (handle_error(response, err))
                         return
