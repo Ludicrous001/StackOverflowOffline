@@ -48,19 +48,13 @@ function show_questions(response, page_number, search_terms, questions_per_page)
                 // If the user has typed in search terms, require all search terms to be in the title
                 // TODO: optimize
                 else {
-                    search_terms_split = search_terms.split('+')
-                    sql_query = 'SELECT * FROM posts WHERE title IS NOT NULL AND ('
-                    for (var i = 0; i < search_terms_split.length; i++) {
-                        sql_query += "tags LIKE '%" + search_terms_split[i].toLowerCase() + "%' OR "
-                    }
-                    sql_query = sql_query.substring(0, sql_query.length - 4);
-                    sql_query += ") AND "
-
+                    var search_terms_split = search_terms.split('+')
+                    sql_query = 'SELECT * FROM posts WHERE '
                     for (var i = 0; i < search_terms_split.length; i++) {
                         sql_query += "LOWER(title) LIKE '%" + search_terms_split[i].toLowerCase() + "%' AND "
                     }
                     sql_query = sql_query.substring(0, sql_query.length - 4);
-                    sql_query += 'LIMIT ' + questions_per_page + ' OFFSET ' + questions_per_page*page_number
+                    sql_query += ' LIMIT ' + questions_per_page + ' OFFSET ' + questions_per_page*page_number
                 }
 
                 // Query the databse for the proper list of questions
@@ -75,7 +69,7 @@ function show_questions(response, page_number, search_terms, questions_per_page)
                     var html_end = question_template_page[2]
 
                     if (search_terms == null) {
-                        // Add Previous & Next page buttons
+                        // Calculate Previous & Next page button values
                         var previous_page = 'page' + (page_number-1)
                         if (page_number-1 < 0)
                             previous_page = 'page' + '0'
@@ -83,7 +77,7 @@ function show_questions(response, page_number, search_terms, questions_per_page)
                         var first_page = 'page0'
                     }
                     else {
-                        // Add Previous & Next page buttons
+                        // Calculate Previous & Next page button values
                         var previous_page = 'search?q=' + search_terms + '/page' + (page_number-1)
                         if (page_number-1 < 0)
                             previous_page = 'search?q=' + search_terms + '/page' + '0'
