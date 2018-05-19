@@ -18,4 +18,7 @@ Written in Nodejs, an offline viewer for stackoverflow.com data.
 </ul>
 
 ## Screenshots
-![alt text](https://i.imgur.com/iuKJyMk.png)<br>
+### Question Page
+![alt text](https://i.imgur.com/iuKJyMk.png)
+### Answer Page
+![alt text](https://i.imgur.com/M7LQJgg.png)
