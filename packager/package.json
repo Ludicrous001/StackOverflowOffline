@@ -1,0 +1,21 @@
+{
+  "name": "StackOverflowOffline",
+  "license": "../LICENSE",
+  "bin": "../src/server.js",
+  "dependencies": {
+    "striptags": "3.1.1",
+    "escape-html": "1.0.3",
+    "fs": "0.0.1-security",
+    "btoa": "1.2.1",
+    "pg": "2.0.0",
+    "http": "0.0.0"
+  },
+  "pkg": {
+    "assets": [
+      "../src/*"
+    ],
+    "targets": [
+      "node8"
+    ]
+  }
+}

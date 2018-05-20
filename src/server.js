@@ -1,7 +1,10 @@
 
 var http = require('http')
-var question_page = require('./question_page')
-var answer_page = require('./answer_page')
+var question_page = require(__dirname + '/question_page')
+var answer_page = require(__dirname + '/answer_page')
+
+console.log('StackOverflowOffline started!')
+console.log('Visit 127.0.0.1:1337 in your web browser')
 
 var questions_per_page = 5
 

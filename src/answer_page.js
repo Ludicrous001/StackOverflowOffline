@@ -18,7 +18,7 @@ function handle_error(response, err) {
 function show_answers(response, question_id) {
     var fs = require('fs')
     var escape_html = require('escape-html');
-    var utils = require('./utils')
+    var utils = require(__dirname + '/utils')
     const { Pool, Client } = require('pg')
 
     const client = new Client({
@@ -34,8 +34,8 @@ function show_answers(response, question_id) {
             return
 
         // Load CSS and html template
-        fs.readFile('./primary.css', function (err, css) {
-            fs.readFile('./answer_page.html', function (err, answer_page_template) {
+        fs.readFile(__dirname + '/primary.css', function (err, css) {
+            fs.readFile(__dirname + '/answer_page.html', function (err, answer_page_template) {
 
                 // Get the question from the database
                 client.query('SELECT * FROM posts WHERE id=' + question_id, (err, question) => {

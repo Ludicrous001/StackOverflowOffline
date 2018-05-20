@@ -20,7 +20,7 @@ function show_questions(response, page_number, search_terms, questions_per_page)
     var fs = require('fs')
     var striptags = require('striptags')
     var escape_html = require('escape-html');
-    var utils = require('./utils')
+    var utils = require(__dirname + '/utils')
     const { Pool, Client } = require('pg')
 
     const client = new Client({
@@ -36,8 +36,8 @@ function show_questions(response, page_number, search_terms, questions_per_page)
             return
 
         // Load CSS and html template
-        fs.readFile('./primary.css', function (err, css) {
-            fs.readFile('./question_page.html', function (err, question_template_page) {
+        fs.readFile(__dirname + '/primary.css', function (err, css) {
+            fs.readFile(__dirname + '/question_page.html', function (err, question_template_page) {
 
                 // The default page is the list of all questions sorted by score
                 var sql_query = ''
