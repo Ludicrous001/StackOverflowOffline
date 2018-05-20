@@ -17,6 +17,12 @@ Written in Nodejs, an offline viewer for stackoverflow.com data.
 <li>run the server with the command 'node server.js' and browse to 127.0.0.1:1337 in your web browser</li>
 </ul>
 
+## Packager (Creates Nodejs Executable)
+<ul>
+<li>npm install -g pkg</li>
+<li>pkg ./packger/</li>
+</ul>
+
 ## Screenshots
 ### Question Page
 ![alt text](https://i.imgur.com/iuKJyMk.png)
